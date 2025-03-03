@@ -29,10 +29,11 @@ void gtmp_barrier(){
     local_sense[tid] = (local_sense[tid] + 1) % 2;
     int cur_sense = local_sense[tid];
 
-    #pragma omp atomic
-    count--;
+    int num_left;
+    #pragma omp atomic capture
+    int num_left = --count;
 
-    if (count == 0) {
+    if (num_left == 0) {
         printf("----------All %d of the threads have arrived :)----------\n", global_num_threads);
         count = global_num_threads;
         global_sense = (global_sense + 1) % 2;
