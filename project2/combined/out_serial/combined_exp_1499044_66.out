@@ -1,0 +1,24 @@
+---------------------------------------
+Begin Slurm Prolog: Mar-03-2025 12:35:52
+Job ID:    1499336
+User ID:   swright92
+Account:   coc
+Job name:  cs6210-proj2-combined_exp
+Partition: coc-cpu
+QOS:       coc-ice
+---------------------------------------
+Started on atl1-1-03-007-19-1.pace.gatech.edu with task id 66 with 8 processors and 2 threads
+Avg time: 0.000006
+---------------------------------------
+Begin Slurm Epilog: Mar-03-2025 12:35:54
+Job ID:        1499336
+Array Job ID:  1499044_66
+User ID:       swright92
+Account:       coc
+Job name:      cs6210-proj2-combined_exp
+Resources:     cpu=192,mem=192G,node=8
+Rsrc Used:     cput=00:06:24,vmem=0,walltime=00:00:02,mem=9072K,energy_used=0
+Partition:     coc-cpu
+QOS:           coc-ice
+Nodes:         atl1-1-03-007-19-[1-2],atl1-1-03-007-20-[1-2],atl1-1-03-007-21-[1-2],atl1-1-03-007-22-[1-2]
+---------------------------------------

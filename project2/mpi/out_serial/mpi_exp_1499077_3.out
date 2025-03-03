@@ -1,0 +1,31 @@
+---------------------------------------
+Begin Slurm Prolog: Mar-03-2025 12:29:27
+Job ID:    1499087
+User ID:   swright92
+Account:   coc
+Job name:  cs6210-proj2-mpi_exp
+Partition: coc-cpu
+QOS:       coc-ice
+---------------------------------------
+Started on atl1-1-02-012-5-1.pace.gatech.edu with task id 3
+Centralized Barrier with Sense Reversal
+Avg time: 0.000003
+Centralized Barrier with Sense Reversal
+Centralized Barrier with Sense Reversal
+MCS Barrier
+MCS Barrier
+MCS Barrier
+Avg time: 0.000003
+---------------------------------------
+Begin Slurm Epilog: Mar-03-2025 12:29:30
+Job ID:        1499087
+Array Job ID:  1499077_3
+User ID:       swright92
+Account:       coc
+Job name:      cs6210-proj2-mpi_exp
+Resources:     cpu=12,mem=12G,node=12
+Rsrc Used:     cput=00:00:36,vmem=0,walltime=00:00:03,mem=7900K,energy_used=0
+Partition:     coc-cpu
+QOS:           coc-ice
+Nodes:         atl1-1-02-012-5-[1-2],atl1-1-02-012-6-[1-2],atl1-1-02-012-7-[1-2],atl1-1-02-012-8-[1-2],atl1-1-02-012-9-[1-2],atl1-1-02-012-10-[1-2]
+---------------------------------------
