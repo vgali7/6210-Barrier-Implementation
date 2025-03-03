@@ -1,0 +1,29 @@
+---------------------------------------
+Begin Slurm Prolog: Mar-03-2025 01:57:44
+Job ID:    1492830
+User ID:   swright92
+Account:   coc
+Job name:  cs6210-proj2-omp_exp
+Partition: coc-cpu
+QOS:       coc-ice
+---------------------------------------
+Started on atl1-1-01-005-3-2.pace.gatech.edu with task id 7
+Centralized Barrier with Sense Reversal
+WE ARE STARTING 1 with 7 threads
+----------
+Avg time: 0.000003
+Tournament Barrier
+Avg time: 0.000005
+---------------------------------------
+Begin Slurm Epilog: Mar-03-2025 01:57:47
+Job ID:        1492830
+Array Job ID:  1492823_7
+User ID:       swright92
+Account:       coc
+Job name:      cs6210-proj2-omp_exp
+Resources:     cpu=8,mem=8G,node=1
+Rsrc Used:     cput=00:00:32,vmem=0,walltime=00:00:04,mem=8120K,energy_used=0
+Partition:     coc-cpu
+QOS:           coc-ice
+Nodes:         atl1-1-01-005-3-2
+---------------------------------------

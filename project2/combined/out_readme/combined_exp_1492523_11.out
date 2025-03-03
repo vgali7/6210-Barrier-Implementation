@@ -1,0 +1,25 @@
+---------------------------------------
+Begin Slurm Prolog: Mar-03-2025 01:42:41
+Job ID:    1492543
+User ID:   swright92
+Account:   coc
+Job name:  cs6210-proj2-combined_exp
+Partition: coc-cpu
+QOS:       coc-ice
+---------------------------------------
+Started on atl1-1-02-012-11-1.pace.gatech.edu with task id 11 with 3 processors and 2 threads
+mpiexec: warning: can't run 3 processes on 8 nodes, setting nnodes to 3
+Avg time: 0.000006
+---------------------------------------
+Begin Slurm Epilog: Mar-03-2025 01:42:46
+Job ID:        1492543
+Array Job ID:  1492523_11
+User ID:       swright92
+Account:       coc
+Job name:      cs6210-proj2-combined_exp
+Resources:     cpu=192,mem=192G,node=8
+Rsrc Used:     cput=00:16:00,vmem=0,walltime=00:00:05,mem=8724K,energy_used=0
+Partition:     coc-cpu
+QOS:           coc-ice
+Nodes:         atl1-1-02-012-11-1,atl1-1-03-003-16-[1-2],atl1-1-03-004-5-[1-2],atl1-1-03-007-27-[1-2],atl1-1-03-007-28-1
+---------------------------------------
