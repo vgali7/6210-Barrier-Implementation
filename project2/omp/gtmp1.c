@@ -31,7 +31,7 @@ void gtmp_barrier(){
 
     int num_left;
     #pragma omp atomic capture
-    int num_left = --count;
+    num_left = --count;
 
     if (num_left == 0) {
         printf("----------All %d of the threads have arrived :)----------\n", global_num_threads);
