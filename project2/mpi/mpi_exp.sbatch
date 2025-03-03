@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #SBATCH -J cs6210-proj2-mpi_exp
-#SBATCH --array=2-12
+#SBATCH --array=2-12%1
 #SBATCH -N 12 --ntasks-per-node=1
 #SBATCH --mem-per-cpu=1G
 ##SBATCH -t 5
 #SBATCH -q coc-ice
-#SBATCH -o out/mpi_exp_%A_%a.out
+#SBATCH -o out_serial/mpi_exp_%A_%a.out
 
 echo "Started on `/bin/hostname` with task id $SLURM_ARRAY_TASK_ID"
 

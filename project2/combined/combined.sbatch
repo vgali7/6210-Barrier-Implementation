@@ -1,13 +1,13 @@
 #!/bin/bash
 
 #SBATCH -J cs6210-proj2-combined_exp
-#SBATCH --array=0-76
+#SBATCH --array=0-76%1
 #SBATCH -N 8 --ntasks-per-node=1 --cpus-per-task=12
 #SBATCH --mem-per-cpu=1G
 ##SBATCH -t 5
 #SBATCH -q coc-ice
 #SBATCH --exclusive
-#SBATCH -o out_readme/combined_exp_%A_%a.out
+#SBATCH -o out_serial/combined_exp_%A_%a.out
 
 num_threads=()
 num_procs=()

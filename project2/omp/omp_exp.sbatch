@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #SBATCH -J cs6210-proj2-omp_exp
-#SBATCH --array=2-8
+#SBATCH --array=2-8%1
 #SBATCH -N 1 --cpus-per-task=8
 #SBATCH --mem-per-cpu=1G
 ##SBATCH -t 5
 #SBATCH -q coc-ice
-#SBATCH -o out/omp_exp_%A_%a.out
+#SBATCH -o out_serial/omp_exp_%A_%a.out
 
 echo "Started on `/bin/hostname` with task id $SLURM_ARRAY_TASK_ID"
 
