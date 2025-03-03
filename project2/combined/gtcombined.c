@@ -3,10 +3,43 @@
 #include <mpi.h>
 #include <omp.h>
 #include <math.h>
+#include "gtcombined.h"
 
 // MPI Centralized Sense-Reversing Barrier
 static int mpi_global_sense = 1;
 static int mpi_global_num_processes;
+
+// OpenMP Tournament Barrier
+typedef enum { winner, loser, bye, champion, dropout } role_;
+typedef struct { role_ role; int opponent; int flag; } round_t;
+
+static int omp_global_num_threads;
+static int omp_global_num_rounds;
+static int omp_global_sense = 0;
+static round_t** omp_rounds;
+
+void gtcombined_init(int num_processes, int num_threads) {
+    gtmpi_init(num_processes);
+    gtmp_init(num_threads);
+}
+
+void gtcombined_barrier() {
+    #pragma omp parallel shared(omp_global_num_threads)
+    {
+        gtmp_barrier();
+    }
+
+    int rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    // printf("Threads done for %d\n", rank);
+
+    gtmpi_barrier();
+}
+
+void gtcombined_finalize() {
+    gtmpi_finalize();
+    gtmp_finalize();
+}
 
 void gtmpi_init(int num_processes) {
     mpi_global_num_processes = num_processes;
@@ -32,14 +65,6 @@ void gtmpi_barrier() {
 
 void gtmpi_finalize() {}
 
-// OpenMP Tournament Barrier
-typedef enum { winner, loser, bye, champion, dropout } role_;
-typedef struct { role_ role; int opponent; int flag; } round_t;
-
-static int omp_global_num_threads;
-static int omp_global_num_rounds;
-static int omp_global_sense = 0;
-static round_t** omp_rounds;
 
 void gtmp_init(int num_threads) {
     omp_global_num_threads = num_threads;
@@ -80,14 +105,20 @@ void gtmp_barrier() {
             #pragma omp atomic write
             omp_rounds[opponent][k].flag = local_sense;
             #pragma omp flush
-            while (omp_rounds[tid][k].flag != local_sense) #pragma omp flush;
+            while (omp_rounds[tid][k].flag != local_sense) {
+                #pragma omp flush
+            }
             break;
         } 
         else if (role == winner) {
-            while (omp_rounds[tid][k].flag != local_sense) #pragma omp flush;
+            while (omp_rounds[tid][k].flag != local_sense) {
+                #pragma omp flush
+            }
         }
         else if (role == champion) {
-            while (omp_rounds[tid][k].flag != local_sense) #pragma omp flush;
+            while (omp_rounds[tid][k].flag != local_sense) {
+                #pragma omp flush
+            }
             #pragma omp atomic write
             omp_rounds[opponent][k].flag = local_sense;
             omp_global_sense = local_sense;
@@ -105,8 +136,8 @@ void gtmp_barrier() {
 }
 
 void gtmp_finalize() {
-    for (int i = 0; i < global_num_threads; i++){
-        free(rounds[i]);
+    for (int i = 0; i < omp_global_num_threads; i++){
+        free(omp_rounds[i]);
     }
     free(omp_rounds);
 }
