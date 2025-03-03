@@ -1,11 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <omp.h>
+#include <sys/time.h>
 #include "gtmp.h"
 
 int main(int argc, char** argv)
 {
-  int num_threads, num_iter=10;
+  int num_threads, num_iter=100000;
 
   if (argc < 2){
     fprintf(stderr, "Usage: ./harness [NUM_THREADS]\n");
@@ -21,13 +22,26 @@ int main(int argc, char** argv)
   
   gtmp_init(num_threads);
 
+  double total_time = 0;
+  struct timeval start, end;
 #pragma omp parallel shared(num_threads)
    {
-     int i;
-     for(i = 0; i < num_iter; i++){
-       gtmp_barrier();
-     }
+     for(int i = 0; i < num_iter; i++){
+      #pragma omp single
+      gettimeofday(&start, NULL); 
+
+      gtmp_barrier();
+
+      #pragma omp single
+      {
+        gettimeofday(&end, NULL);
+        total_time += (end.tv_sec - start.tv_sec) + ((end.tv_usec - start.tv_usec) / 1000000.0);
+      }
+    }
    }
+
+  double avg_time = total_time / num_iter;
+  printf("Avg time: %f\n", avg_time);
 
    gtmp_finalize();
 
